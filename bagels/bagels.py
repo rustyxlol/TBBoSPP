@@ -1,32 +1,40 @@
+"""
+Bagels game from The Big Book of Small Python Projects
+
+Author: Rusty
+GitHub: https://github.com/rustyxlol/TBBoSPP
+"""
 import random
-from tabnanny import check
 
 MAX_GUESSES = 10
 
 
 def generate_number():
+    "Generate random number in a string format"
     return str(random.randint(100, 999))
 
 
-def checkInput(number, random_number):
-    if number == random_number:
+def check_guess(guess_number, random_number):
+    "Bagels logic"
+    if guess_number == random_number:
         return "Winner"
 
     results = []
 
-    for i in range(len(random_number)):
-        if number[i] == random_number[i]:
+    for number, index in enumerate(guess_number):
+        if guess_number[index] == random_number[index]:
             results.append("Fermi")
-        elif number[i] in random_number:
+        elif number in random_number:
             results.append("Pico")
 
     if len(results) == 0:
         return "Bagels"
-    else:
-        return " ".join(results)
+
+    return " ".join(results)
 
 
 def game():
+    "Main game loop"
     while True:
         print('''
 In *Bagels*, a deductive logic game, you
@@ -50,10 +58,12 @@ You have 10 guesses to guess the secret number.
             while len(user_input) != len(random_number):
                 user_input = input("Enter a guess that is three digits: ")
 
-            result = checkInput(user_input, random_number)
+            result = check_guess(user_input, random_number)
             print(result)
+
             if user_input == random_number:
                 break
+
             guesses -= 1
 
         if guesses == 0:
@@ -64,6 +74,7 @@ You have 10 guesses to guess the secret number.
 
         if play_again.lower() != 'y':
             break
+
     print("Thanks for playing!")
 
 
