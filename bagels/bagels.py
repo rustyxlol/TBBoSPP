@@ -1,4 +1,5 @@
 """
+Project 01
 Bagels game from The Big Book of Small Python Projects
 
 Author: Rusty
