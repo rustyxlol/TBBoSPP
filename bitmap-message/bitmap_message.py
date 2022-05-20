@@ -35,7 +35,7 @@ def text_to_bmp(text, bmp):
     print(result)
 
 
-if __name__ == "__main__":
+def main():
     user_input = input("Enter message to map: ")
     if len(user_input.strip()) == 0:
         sys.exit()
@@ -44,3 +44,7 @@ if __name__ == "__main__":
     if bitmap_format is not None:
         text_to_bmp(user_input, bitmap_format)
         print("You can also find this in output.txt")
+
+
+if __name__ == "__main__":
+    main()
