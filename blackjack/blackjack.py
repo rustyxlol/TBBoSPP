@@ -8,7 +8,6 @@ GitHub: https://github.com/rustyxlol/TBBoSPP
 import random
 from collections import namedtuple
 
-
 SUITE_SYMBOLS = {
     'Spades': chr(9824),
     'Clubs': chr(9827),
@@ -21,6 +20,7 @@ Card = namedtuple('Card', ['rank', 'suite'])
 
 
 class Deck:
+    "Generates all 52 cards"
     suites = ['Spades', 'Diamonds', 'Hearts', 'Clubs']
     ranks = [str(rank) for rank in range(2, 11)] + \
         ['J', 'K', 'Q', 'A']
@@ -65,6 +65,18 @@ def display_card(cards):
         print(row)
 
 
-deck = Deck()
-
-display_hands([deck[0]], [deck[0], deck[1]], True)
+def display_rules():
+    "Displays rules"
+    print("*"*30)
+    print("Rules".rjust(17))
+    print("*"*30)
+    print("Try to get as close to 21 without going over.")
+    print("Kings, Queens, and Jacks are worth 10 points.")
+    print("Aces are worth 1 or 11 points.")
+    print("Cards 2 through 10 are worth their face value.")
+    print("(H)it to take another card.")
+    print("(S)tand to stop taking cards.")
+    print("On your first play, you can (D)ouble down to increase your bet")
+    print("but must hit exactly one more time before standing.")
+    print("In case of a tie, the bet is returned to the player.")
+    print("The dealer stops hitting at 17.")
