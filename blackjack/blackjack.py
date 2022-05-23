@@ -119,6 +119,17 @@ def get_hand_value(cards):
     return value
 
 
+def get_move():
+    while True:
+        print("(H)it, (S)tand, (Q)uit")
+        move = input("> ").lower()
+        if move in ('h', 's'):
+            return move
+        if move.startswith('q'):
+            print("Wow you really did that")
+            sys.exit(0)
+
+
 def main():
     print("WELCOME TO BLACKJACK")
     display_rules()
@@ -141,3 +152,48 @@ def main():
 
             if get_hand_value(player_hand) > 21:
                 break
+
+            move = get_move()
+
+            if move == 'h':
+                new_card = deck.pop()
+                player_hand.append(new_card)
+
+            if get_hand_value(player_hand) > 21:
+                break
+
+            if move == 's':
+                break
+
+        if get_hand_value(player_hand) <= 21:
+            while get_hand_value(dealer_hand) <= 17:
+                dealer_hand.append(deck.pop())
+                display_hands(player_hand, dealer_hand, False)
+
+                if get_hand_value(dealer_hand) > 21:
+                    break
+
+        display_hands(player_hand, dealer_hand, True)
+
+        player_hand_value = get_hand_value(player_hand)
+        dealer_hand_value = get_hand_value(dealer_hand)
+
+        if dealer_hand_value >= 21:
+            money += bet
+            print("The dealer BUSTS! You win!")
+        elif player_hand_value >= 21:
+            money -= bet
+            print("You BUST!")
+        elif player_hand_value <= dealer_hand_value:
+            money -= bet
+            print("You lose!")
+        elif player_hand_value == dealer_hand_value:
+            print("Tie! You get the money back!")
+        else:
+            print(f"You win ${bet}")
+            money += bet
+
+        print("Press ENTER to play again\n")
+
+
+main()
