@@ -40,8 +40,10 @@ def decrypt(message, shift_key):
 
 def main():
     mode = ''
+    translation = ''
     shift_key = 3
 
+    # Get mode
     while True:
         print("Do you want to (e)ncrypt or (d)ecrypt?")
         action = input("> ").lower()
@@ -57,13 +59,12 @@ def main():
     print("Enter message to encrypt")
     message = input("> ")
 
+    # Get shift key
     while True:
         print("Enter shift key(0-25)")
         shift_key = int(input("> "))
         if shift_key <= 25:
             break
-
-    translation = ''
 
     if mode == 'encrypt':
         translation = encrypt(message, shift_key)
@@ -71,7 +72,6 @@ def main():
     if mode == 'decrypt':
         translation = decrypt(message, shift_key)
 
-    print("The translated message is")
     print(translation)
 
     try:
