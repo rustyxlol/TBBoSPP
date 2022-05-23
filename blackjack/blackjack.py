@@ -7,6 +7,7 @@ GitHub: https://github.com/rustyxlol/TBBoSPP
 """
 import random
 from collections import namedtuple
+import sys
 
 SUITE_SYMBOLS = {
     'Spades': chr(9824),
@@ -28,12 +29,16 @@ class Deck:
     def __init__(self):
         self._cards = [Card(rank, suite)
                        for suite in self.suites for rank in self.ranks]
+        random.shuffle(self._cards)
 
     def __len__(self):
         return len(self._cards)
 
     def __getitem__(self, index):
         return self._cards[index]
+
+    def pop(self):
+        return self._cards.pop()
 
 
 def display_hands(player_hand, dealer_hand, show_dealer_all=False):
@@ -80,3 +85,59 @@ def display_rules():
     print("but must hit exactly one more time before standing.")
     print("In case of a tie, the bet is returned to the player.")
     print("The dealer stops hitting at 17.")
+
+
+def get_bet(total_money):
+    print("Money: ", total_money)
+    while True:
+        print("Press q to quit")
+        bet = input(f"Enter bet amount(1 - {total_money}): ")
+        if bet == 'q':
+            sys.exit()
+        if not bet.isdecimal() or int(bet) >= total_money:
+            continue
+
+        return int(bet)
+
+
+def get_hand_value(cards):
+    value = 0
+    num_aces = 0
+    for card in cards:
+        if card.rank in ('K', 'Q', 'J'):
+            value += 10
+        elif card.rank == 'A':  # evaluate aces last
+            num_aces += 1
+        else:
+            value += int(card.rank)
+
+    value += num_aces
+    for _ in range(num_aces):
+        if value + 10 < 21:
+            value += 10
+
+    return value
+
+
+def main():
+    print("WELCOME TO BLACKJACK")
+    display_rules()
+    money = 5000
+    while True:
+        if money <= 0:
+            print("You cannot enter da casino")
+            break
+
+        bet = get_bet(money)
+
+        deck = Deck()
+
+        player_hand = [deck.pop(), deck.pop()]
+        dealer_hand = [deck.pop(), deck.pop()]
+
+        while True:
+            # Play until bust or stand
+            display_hands(player_hand, dealer_hand, False)
+
+            if get_hand_value(player_hand) > 21:
+                break
