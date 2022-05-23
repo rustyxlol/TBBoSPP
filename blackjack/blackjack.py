@@ -4,6 +4,10 @@ Blackjack
 
 Author: Rusty
 GitHub: https://github.com/rustyxlol/TBBoSPP
+
+TODO: Add logic for double down
+TODO: Clean up command line
+TODO: Add colors to the command line to make it look ✨prettier✨
 """
 import random
 from collections import namedtuple
