@@ -5,8 +5,9 @@ Blackjack
 Author: Rusty
 GitHub: https://github.com/rustyxlol/TBBoSPP
 
-TODO: Add logic for double down
+TODO: CLEANER CODE
 TODO: Clean up command line
+TODO: Add logic for double down
 TODO: Add colors to the command line to make it look ✨prettier✨
 """
 import random
@@ -200,4 +201,5 @@ def main():
         print("Press ENTER to play again\n")
 
 
-main()
+if __name__ == "__main__":
+    main()
