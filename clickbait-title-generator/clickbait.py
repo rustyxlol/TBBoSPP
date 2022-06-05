@@ -1,10 +1,6 @@
 """
 Project 11
-<<<<<<< HEAD
 Clickbait Title Generator
-=======
-Caesar Clickbait Title Generator
->>>>>>> 7f241755960ce12299890966073b8baec55f6ab2
 
 Author: Rusty
 GitHub: https://github.com/rustyxlol/TBBoSPP
@@ -83,13 +79,10 @@ def main():
     while True:
         print("Enter number of clickbaits to generate: ")
         n = int(input("> "))
-<<<<<<< HEAD
         for _ in range(n):
-=======
-        for i in range(n):
->>>>>>> 7f241755960ce12299890966073b8baec55f6ab2
             random.choice(random_functions)()
 
 
 if __name__ == "__main__":
     main()
+    
