@@ -22,7 +22,7 @@ def check_guess(guess_number, random_number):
 
     results = []
 
-    for number, index in enumerate(guess_number):
+    for index, number in enumerate(guess_number):
         if guess_number[index] == random_number[index]:
             results.append("Fermi")
         elif number in random_number:
